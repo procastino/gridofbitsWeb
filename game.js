@@ -14,23 +14,47 @@ var resIdVertical=["resV1","resV2","resV3","resV4"];
 var results=[[0,0,0,0],[0,0,0,0]];
 
 function populate(){
+  //populating the grid with 0 and 1
   var bits = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
   for (i=0;i<4;i++){
     for (j=0;j<4;j++){
       var bit=Math.floor(Math.random()*2);
       bits[i][j]=bit;
       var button=buttonsId[i][j];
-      console.log(bit);
       document.getElementById(button).innerHTML=bit;
+
     }
   }
+  //populating the horizontal results
   for (j=0;j<4;j++){
     for (i=0;i<4;i++){
       results[0][j] = results[0][j]+decValues[i]*bits[j][i];
-    }
-    document.getElementById(resIdHorizontal[j]).innerHTML=results[0][j];
+      }
+      document.getElementById(resIdHorizontal[j]).innerHTML=results[0][j];
   }
+  //populating the vertical results
+  for (j=0;j<4;j++){
+    for (i=0;i<4;i++){
+      results[1][j] = results[1][j]+decValues[i]*bits[i][j];
+      }
+    document.getElementById(resIdVertical[j]).innerHTML=results[1][j];
+  }
+  //button management
+  $(document).ready(function(){
+      $("button").click(function(){
+          if ($(this).html()==0){
+            $(this).html('1');
+          }
+          else {
+            $(this).html('0');
+          }
+      });
+  });
+}
 
-  console.log(results);
 
+function showGrid(){
+  for (i=0;i<4;i++){
+
+  }
 }

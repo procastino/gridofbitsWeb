@@ -40,56 +40,52 @@ function populate(){
       document.getElementById(resId[k][j]).innerHTML=results[k][j];
       }
     }
-  //button management for each bit
+
+  //press startButton to start recognizing bitButtons
   $(document).ready(function(){
-      $("button").click(function(){
-          if ($(this).html()==0){
-            $(this).html('1');
-          }
-          else {
-            $(this).html('0');
-          }
-          //checking player results
-          for (k=0;k<2;k++){
-            for (i=0;i<4;i++){
-              for (j=0;j<4;j++){
-                if (k==0){
-                playerResults[k][i] = playerResults[k][i]+decValues[j]*document.getElementById(buttonsId[i][j]).innerHTML;
-                  }
-                else {
-                  playerResults[k][i] = playerResults[k][i]+decValues[j]*document.getElementById(buttonsId[j][i]).innerHTML;
-                  }
-                }
-              if (playerResults[k][i]==results[k][i]){
-                $('#'+resId[k][i]).css("background-color", "orange");
-                numCorrect += 1;
-                }
-              else {
-                $('#'+resId[k][i]).css("background-color", "white");
-                }
+    $("#startButton").click(function(){
+      console.log("start!");
+      gameStart();
+    });
+  });
+}
+
+//game starts recognizing bitButtons, giving results and informing completion
+function gameStart(){
+  $(".bitButton").click(function(){
+      if ($(this).html()==0){
+        $(this).html('1');
+        $(this).css("background-color","red");
+      }
+      else {
+        $(this).html('0');
+        $(this).css("background-color","#4CAF50");
+      }
+      //checking player results
+      for (k=0;k<2;k++){
+        for (i=0;i<4;i++){
+          for (j=0;j<4;j++){
+            if (k==0){
+            playerResults[k][i] = playerResults[k][i]+decValues[j]*document.getElementById(buttonsId[i][j]).innerHTML;
+              }
+            else {
+              playerResults[k][i] = playerResults[k][i]+decValues[j]*document.getElementById(buttonsId[j][i]).innerHTML;
               }
             }
-            if (numCorrect==8){
-              document.getElementById('final').innerHTML="Conseguíchelo!";
-            }else {
-              numCorrect = 0;
+          if (playerResults[k][i]==results[k][i]){
+            $('#'+resId[k][i]).css("background-color", "orange");
+            numCorrect += 1;
             }
-//THIS DOESN'T WORK!! LOOK FOR SOMETHING THAT COMPARES THE TWO ARRAYS
-/*           for (i=0;i<2;i++){
-              for (j=0;j<4;j++){
-                if (results[i][j]==playerResults[i][j]){
-                  numCorrect++;
-                  if (numCorrect==8){
-                    document.getElementById('final').innerHTML="Conseguíchelo!";
-                    }
-                  else {
-                    console.log(numCorrect);
-                    numCorrect=0;
-                    }
-                  }
-                }
-              }*/
-              playerResults=[[0,0,0,0],[0,0,0,0]];
-      });
-  });
+          else {
+            $('#'+resId[k][i]).css("background-color", "white");
+            }
+          }
+        }
+        if (numCorrect==8){
+          document.getElementById('final').innerHTML="Conseguíchelo!";
+        }else {
+          numCorrect = 0;
+        }
+          playerResults=[[0,0,0,0],[0,0,0,0]];
+    });
 }

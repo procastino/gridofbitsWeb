@@ -1,8 +1,9 @@
 body {
   font-family: 'Roboto Mono', monospace;
+  text-align: center;
 }
 button {
-  background-color: #4CAF50; /* Green */
+  background-color: blue; /* Green */
   border: none;
   border-radius: 4px;
   color: white;

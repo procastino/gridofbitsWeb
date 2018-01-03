@@ -52,14 +52,26 @@ function populate(){
 
 //game starts recognizing bitButtons, giving results and informing completion
 function gameStart(){
+  //time management function
+  //variables for time display
+  var counter=setInterval(timer,10);
+  var counterOn=true;
+  var count=0;
+  function timer(){
+    count+=1;
+    var seconds=Math.floor(count/100);
+    document.getElementById("timerCent").innerHTML=count-seconds*100;
+    document.getElementById("timerSec").innerHTML=seconds;
+
+  }
   $(".bitButton").click(function(){
       if ($(this).html()==0){
         $(this).html('1');
-        $(this).css("background-color","red");
+        $(this).css("background-color","orange");
       }
       else {
         $(this).html('0');
-        $(this).css("background-color","#4CAF50");
+        $(this).css("background-color","blue");
       }
       //checking player results
       for (k=0;k<2;k++){
@@ -73,7 +85,7 @@ function gameStart(){
               }
             }
           if (playerResults[k][i]==results[k][i]){
-            $('#'+resId[k][i]).css("background-color", "orange");
+            $('#'+resId[k][i]).css("background-color", "#4CAF50");
             numCorrect += 1;
             }
           else {
@@ -83,6 +95,8 @@ function gameStart(){
         }
         if (numCorrect==8){
           document.getElementById('final').innerHTML="Conseguíchelo!";
+          clearInterval(counter);
+          // counterOn=false;
         }else {
           numCorrect = 0;
         }

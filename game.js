@@ -62,27 +62,33 @@ function populate(){
                 }
               if (playerResults[k][i]==results[k][i]){
                 $('#'+resId[k][i]).css("background-color", "orange");
+                numCorrect += 1;
                 }
               else {
                 $('#'+resId[k][i]).css("background-color", "white");
                 }
               }
             }
-// THIS DOESN'T WORK!! LOOK FOR SOMETHING THAT COMPARES THE TWO ARRAYS
-            // for (i=0;i<2;i++){
-            //   for (j=0;j<4;j++){
-            //     if (results[i][j]==playerResults[i][j]){
-            //       numCorrect++;
-            //       if (numCorrect==8){
-            //         document.getElementById('final').innerHTML="Conseguíchelo!";
-            //         }
-            //       else {
-            //         console.log(numCorrect);
-            //         numCorrect=0;
-            //         }
-            //       }
-            //     }
-            //   }
+            if (numCorrect==8){
+              document.getElementById('final').innerHTML="Conseguíchelo!";
+            }else {
+              numCorrect = 0;
+            }
+//THIS DOESN'T WORK!! LOOK FOR SOMETHING THAT COMPARES THE TWO ARRAYS
+/*           for (i=0;i<2;i++){
+              for (j=0;j<4;j++){
+                if (results[i][j]==playerResults[i][j]){
+                  numCorrect++;
+                  if (numCorrect==8){
+                    document.getElementById('final').innerHTML="Conseguíchelo!";
+                    }
+                  else {
+                    console.log(numCorrect);
+                    numCorrect=0;
+                    }
+                  }
+                }
+              }*/
               playerResults=[[0,0,0,0],[0,0,0,0]];
       });
   });
